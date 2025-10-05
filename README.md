@@ -1,2 +1,2 @@
-# OSex To OStim Standalone
-It converts Animations
+# You will need OStim Standalone and OSex Animations and the latest build of Python to run this.
+
