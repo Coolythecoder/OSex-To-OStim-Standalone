@@ -2,11 +2,14 @@
 r"""
 osex_to_ostim_sa_converter.py
 
-Convert OSex / OpenSex (OSA-based) animation XML into
-OStim Standalone (SA) JSON scene files + optional alignment,
-auto-generate Pandora inputs, and pack a ready-to-install ZIP.
+GUI tool to convert OSex/OpenSex (OSA-based) XML scenes into OStim Standalone (SA)
+JSON scenes, auto-generate Pandora inputs, and package a ready-to-install ZIP.
 
-GUI-only. Python 3.10+.
+Also supports OSex animation mod import: point the GUI at a .zip (native) or
+.7z (via 7z.exe / 7za / 7zz in PATH) containing your OSex animation mod; the tool
+extracts to a temp dir, locates XML automatically, converts, and builds the SA ZIP.
+
+Python 3.10+ · No pip installs required for normal use.
 """
 
 from __future__ import annotations
@@ -14,6 +17,8 @@ from __future__ import annotations
 import json
 import re
 import sys
+import shutil
+import subprocess
 import tempfile
 import textwrap
 import xml.etree.ElementTree as ET
@@ -271,6 +276,7 @@ def infer_project_from_path(hkx_rel: str) -> str:
 
 
 def generate_pandora_files(pandora_root: Path, hkx_paths: List[str]) -> List[Path]:
+    """Write AnimSetData path lists for Pandora based on HKX paths."""
     created: List[Path] = []
     groups: Dict[str, List[str]] = {}
     for rel in hkx_paths:
@@ -280,17 +286,21 @@ def generate_pandora_files(pandora_root: Path, hkx_paths: List[str]) -> List[Pat
     for project, rels in groups.items():
         base = pandora_root / "animationsetdatasinglefile" / project
         base.mkdir(parents=True, exist_ok=True)
+
+        # Project-wide list
         all_file = base / f"{project}.txt"
         with all_file.open("w", encoding="utf-8") as f:
             for r in rels:
                 path_norm = r if r.lower().startswith("meshes/") else f"meshes/{r}"
-                f.write(f"{norm_slashes(path_norm)}\n")
+                f.write(norm_slashes(path_norm) + "\n")
         created.append(all_file)
+
+        # Common paired set
         set_file = base / "H2HDual.txt"
         with set_file.open("w", encoding="utf-8") as f:
             for r in rels:
                 path_norm = r if r.lower().startswith("meshes/") else f"meshes/{r}"
-                f.write(f"{norm_slashes(path_norm)}\n")
+                f.write(norm_slashes(path_norm) + "\n")
         created.append(set_file)
 
     return created
@@ -345,6 +355,42 @@ def make_ready_to_install_zip(
             zf.write(alignment_path, arcname="alignment.json")
 
     return zip_path
+
+
+# -----------------------------
+# Mod archive import (OSex animation mod)
+# -----------------------------
+def has_7z() -> bool:
+    """True if 7z/7za/7zz is in PATH (for .7z extraction)."""
+    for exe in ("7z", "7za", "7zz"):
+        if shutil.which(exe):
+            return True
+    return False
+
+
+def extract_mod_archive(archive: Path) -> Path:
+    """Extract .zip natively or .7z via external 7z to a temp dir. Returns root."""
+    tmp = Path(tempfile.mkdtemp(prefix="osex_mod_"))
+    if archive.suffix.lower() == ".zip":
+        with ZipFile(archive, "r") as zf:
+            zf.extractall(tmp)
+    elif archive.suffix.lower() == ".7z":
+        if not has_7z():
+            raise RuntimeError(".7z provided but 7z.exe/7za/7zz not found in PATH.")
+        exe = shutil.which("7z") or shutil.which("7za") or shutil.which("7zz")
+        subprocess.check_call([exe, "x", str(archive), f"-o{tmp}", "-y"])
+    else:
+        raise RuntimeError("Unsupported archive type. Use .zip (recommended) or .7z (with 7z).")
+    return tmp
+
+
+def find_xml_root(extracted_root: Path) -> Path:
+    """Find a folder under extracted_root that contains OSex/OpenSex XML files."""
+    xmls = list(extracted_root.rglob("*.xml"))
+    if not xmls:
+        raise FileNotFoundError("No XML files found inside the mod archive.")
+    parents = sorted({x.parent for x in xmls}, key=lambda p: len(p.parts))
+    return parents[0]
 
 
 # -----------------------------
@@ -421,6 +467,7 @@ def launch_gui() -> int:
     root.title("OSex → OStim SA Converter")
 
     state = {
+        "mod_archive": tk.StringVar(),
         "input_xml": tk.StringVar(),
         "output_scenes": tk.StringVar(),
         "pack": tk.StringVar(value="MyPack"),
@@ -441,23 +488,33 @@ def launch_gui() -> int:
         if p:
             var.set(p)
 
-    def browse_file_save_json(var: tk.StringVar):
-        p = filedialog.asksaveasfilename(defaultextension=".json", filetypes=(("JSON","*.json"),("All","*.*")))
+    def browse_file_open_json(var: tk.StringVar):
+        p = filedialog.askopenfilename(filetypes=(("JSON", "*.json"), ("All", "*.*")))
         if p:
             var.set(p)
 
-    def browse_file_open_json(var: tk.StringVar):
-        p = filedialog.askopenfilename(filetypes=(("JSON","*.json"),("All","*.*")))
+    def browse_file_save_json(var: tk.StringVar):
+        p = filedialog.asksaveasfilename(defaultextension=".json", filetypes=(("JSON", "*.json"), ("All", "*.*")))
         if p:
             var.set(p)
 
     def browse_save_zip(var: tk.StringVar):
-        p = filedialog.asksaveasfilename(defaultextension=".zip", filetypes=(("ZIP file","*.zip"),))
+        p = filedialog.asksaveasfilename(defaultextension=".zip", filetypes=(("ZIP file", "*.zip"),))
         if p:
             var.set(p)
 
+    def browse_mod_archive():
+        p = filedialog.askopenfilename(filetypes=(("Mod archives", "*.zip;*.7z"), ("ZIP", "*.zip"), ("7z", "*.7z"), ("All", "*.*")))
+        if p:
+            state["mod_archive"].set(p)
+
     r = 0
-    ttk.Label(frm, text="Input XML folder:").grid(row=r, column=0, sticky="w", **pad)
+    ttk.Label(frm, text="OSex mod archive (.zip/.7z) [optional]:").grid(row=r, column=0, sticky="w", **pad)
+    ttk.Entry(frm, textvariable=state["mod_archive"], width=56).grid(row=r, column=1, sticky="ew", **pad)
+    ttk.Button(frm, text="Browse", command=browse_mod_archive).grid(row=r, column=2, **pad)
+
+    r += 1
+    ttk.Label(frm, text="OR Input XML folder:").grid(row=r, column=0, sticky="w", **pad)
     ttk.Entry(frm, textvariable=state["input_xml"], width=56).grid(row=r, column=1, sticky="ew", **pad)
     ttk.Button(frm, text="Browse", command=lambda: browse_dir(state["input_xml"])).grid(row=r, column=2, **pad)
 
@@ -487,7 +544,7 @@ def launch_gui() -> int:
 
     r += 1
     txt = tk.Text(frm, height=12, width=80)
-    txt.grid(row=r, column=0, columnspan=3, sticky="nsew", padx=8, pady=(8,4))
+    txt.grid(row=r, column=0, columnspan=3, sticky="nsew", padx=8, pady=(8, 4))
     frm.rowconfigure(r, weight=1)
 
     def log(s: str):
@@ -496,25 +553,38 @@ def launch_gui() -> int:
         root.update_idletasks()
 
     r += 1
+
     def on_run():
         try:
-            input_xml = Path(state["input_xml"].get()).expanduser()
+            mod_archive = Path(state["mod_archive"].get()).expanduser() if state["mod_archive"].get() else None
+            input_xml = Path(state["input_xml"].get()).expanduser() if state["input_xml"].get() else None
             output_scenes = Path(state["output_scenes"].get()).expanduser()
             pack = state["pack"].get().strip()
             emit_alignment = Path(state["emit_alignment"].get()).expanduser() if state["emit_alignment"].get() else None
             merge_alignment = Path(state["merge_alignment"].get()).expanduser() if state["merge_alignment"].get() else None
             zip_out = Path(state["zip_out"].get()).expanduser() if state["zip_out"].get() else None
 
-            if not input_xml or not input_xml.exists():
-                messagebox.showerror("Missing input", "Select a valid input XML folder"); return
             if not output_scenes:
                 messagebox.showerror("Missing output", "Select an output scenes folder"); return
             if not pack:
                 messagebox.showerror("Missing pack name", "Enter a pack name"); return
 
+            # If a mod archive is provided, it takes precedence
+            if mod_archive:
+                if not mod_archive.exists():
+                    messagebox.showerror("Archive not found", str(mod_archive)); return
+                log(f"Extracting mod archive: {mod_archive}")
+                extracted = extract_mod_archive(mod_archive)
+                work_xml_root = find_xml_root(extracted)
+                log(f"Found XML under: {work_xml_root}")
+            else:
+                if not input_xml or not input_xml.exists():
+                    messagebox.showerror("Missing input", "Select a valid input XML folder or provide a mod archive"); return
+                work_xml_root = input_xml
+
             log("Converting…")
             scenes, alignment_written = run_conversion(
-                input_xml=input_xml,
+                input_xml=work_xml_root,
                 output_scenes=output_scenes,
                 pack=pack,
                 emit_alignment=emit_alignment,
@@ -538,7 +608,8 @@ def launch_gui() -> int:
             messagebox.showerror("Error", str(e))
             log(f"ERROR: {e}")
 
-    ttk.Button(frm, text="Run Conversion", command=on_run).grid(row=r, column=0, columnspan=3, sticky="ew", padx=8, pady=8)
+    ttk.Button(frm, text="Run Conversion", command=on_run)\
+        .grid(row=r, column=0, columnspan=3, sticky="ew", padx=8, pady=8)
 
     root.mainloop()
     return 0
