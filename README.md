@@ -1,2 +1,2 @@
-# You will need OStim Standalone, OSex Animations, the latest build of Python and Pandora to run this.
+You will need OStim Standalone, OSex Animations, the latest build of Python (optional now) and Pandora to run this.
 
