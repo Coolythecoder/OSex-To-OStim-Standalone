@@ -1,0 +1,24 @@
+{
+  "name": "Example Next",
+  "modpack": "Example Pack",
+  "length": 3.0,
+  "navigations": [
+    {
+      "destination": "ExampleIdle",
+      "description": "Return"
+    }
+  ],
+  "speeds": [
+    {
+      "animation": "ExampleNextEvent"
+    }
+  ],
+  "actors": [
+    {
+      "intendedSex": "male"
+    },
+    {
+      "intendedSex": "female"
+    }
+  ]
+}

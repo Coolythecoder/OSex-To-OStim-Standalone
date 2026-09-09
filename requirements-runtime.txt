@@ -1,0 +1,4 @@
+# Runtime-only dependencies for the transparent Nexus source distribution.
+# Python itself and its standard tkinter component are not bundled.
+customtkinter==5.2.2
+Pillow==12.2.0

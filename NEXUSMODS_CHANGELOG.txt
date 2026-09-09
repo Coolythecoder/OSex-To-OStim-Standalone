@@ -1,0 +1,83 @@
+Version 6.0
+
+[list]
+[*]Added a separate transparent Nexus Source download with no EXE, bundled runtime, DLL/PYD, batch/PowerShell launcher, or nested archive. It includes inspectable Python source, a strict packaging audit, payload hashes, and a versioned outer-ZIP hash.
+[*]The Nexus Source edition requires Python 3.11 plus the two pinned packages in requirements-runtime.txt. The self-contained Windows edition remains available separately because executable uploads may require Nexus moderator review even when clean.
+[*]Added automatic Skyrim LE Havok animation detection and 32-bit-to-64-bit HKX conversion when a supported local helper is available.
+[*]Added automatic discovery and explicit GUI/CLI selection for Creation Kit HavokBehaviorPostProcess.exe, Cathedral Assets Optimizer hkx32to64.exe, and hkxcmd.exe.
+[*]Source archives are never modified, existing SE/AE HKX files remain unchanged, helper output is validated before packaging, and final verification fails if an unsupported 32-bit HKX remains.
+[/list]
+
+Version 5.9
+
+[list]
+[*]Classic SexLab/SLAL exports now explain that Pandora auto-discovers FNIS_*_List.txt and will not show a converted-pack checkbox. Reports and install steps include the exact FNIS Mod name to confirm in Engine.log.
+[*]Pandora log analysis can now verify expected FNIS Mod entries separately from OStim/Nemesis module entries and gives profile/game-path guidance when auto-discovery is missing.
+[*]Windows releases now build from a fresh pinned environment with PyInstaller 6.22.2 one-folder mode, UPX disabled, embedded version metadata, forbidden-dependency auditing, build provenance, and optional Authenticode signing.
+[/list]
+
+Version 5.8
+
+[list]
+[*]Fixed a false adult-only safety block on OStim packs that include inherited Nemesis defaultmale/defaultfemale behavior catalogs. Vanilla Skyrim behavior references in those catalogs are ignored, while archive paths, scene metadata, ATT registrations, and custom animation paths remain checked.
+[*]Validated Sanguine Seductions - OStim Animation Pack 3.0 from the original Nexus archive. Diagnosis passes with source warnings, and SexLab export produces 17 animations, 34 registered HKX events, and no missing deployment events.
+[/list]
+
+Version 5.7
+
+[list]
+[*]Fixed Build Recommended Package ignoring the Human-only OStim output checkbox. Your explicit checkbox setting now wins over a compatibility profile recommendation.
+[*]Creature runtime scans now report INCONCLUSIVE when MO2/Vortex virtualization may hide OCreatures or Creature Framework markers, instead of claiming the mods are definitely missing. Missing expected creature actor-root behavior files still fail.
+[*]Improved Pandora Engine.log analysis for Pandora 4.4 merge-success messages, files actually written beside the log, and log-specific output settings. An unrelated Pandora settings file no longer creates a false no-output result.
+[*]Fixed SexLab P+/SLSB actor sex flags. Ordinary male positions no longer export as futa, while explicit source futa flags are preserved.
+[*]Added a periodic Still working message during large solid-archive and behavior jobs so the GUI gives visible progress during long operations.
+[*]Added exact tested profiles for K4 Anims 1.5 SE and SLSB Anub 12.2025.
+[*]Completed real K4 and SLSB Anub builds. K4 produced 14 reachable OStim scenes and 190 registered HKX events; the Anub human-only build produced 146 reachable scenes and 1,854 events, while the P+ build produced 316 animations and a compiled registry.
+[*]Ran both generated behavior sets through Pandora Behaviour Engine+ 4.4 in isolated Skyrim roots; Pandora loaded the pack registrations and wrote behavior HKX output without pack-specific errors.
+[*]Corrected the Pandora checkbox/idle-actor failure. New OStim Standalone packages use a Pandora-compatible Nemesis/ATT patch for human events plus FNIS creature lists/hooks when needed.
+[*]Validated generated behavior output with Pandora Behaviour Engine+ 4.4.0 in an isolated Skyrim test root; the FlufyFox test module loaded and generated behavior output without Pandora errors.
+[*]Verification now rejects the obsolete Pandora_Engine info.xml plus animationdata/animationsetdata layout because Pandora can display that module without assembling its payload.
+[*]Fixed the remaining GUI background-thread Tk value reads and the advanced-build zip_out error.
+[*]Fixed the remaining Baka/HCOS 'str' object has no attribute 'get' crash by handling privacy-safe truncated example containers and legacy list/string report fields consistently.
+[*]Completed a real BakaFactory SLAL Animation 78 human-only conversion with 58 deployable scenes, 672 registered HKX events, complete generated-menu reachability, and zero missing deployment events.
+[*]Fixed solid 7z archive ratio handling, multi-JSON SLAL output naming, SLAL branch and creature actor-root selection, and behavior graph HKX files being packaged as animation clips.
+[*]Behavior module/list names are pack-specific, so multiple converted packs no longer share root AnimData registration files.
+[*]Existing OStimSA ZIPs made with the old checkbox-only Pandora layout must be rebuilt from the original source archive.
+[*]Fixed a diagnosis/report popup that could show 'str' object has no attribute 'get' when older or malformed compatibility/report fields were plain text instead of structured data.
+[*]Hardened public report renderers, source-selection summaries, compatibility matching, packaged README/manifest generation, and Nexus-safe report bundles so malformed legacy JSON fields are reported as not recorded instead of crashing the GUI.
+[*]Added safer JSON boundary validation for compatibility profiles, OStim Tools project manifests, SLAL/SLSB/OStim scene parsing, AAC manifests, and report sections so strings in object fields produce clear warnings or validation errors.
+[*]Improved GUI internal-error handling: unexpected background-job crashes now write a traceback log with converter version, operation, selected archive name, and debug-mode state, plus Copy Error Summary and Open Error Log support actions.
+[*]Added BakaFactory SLAL Animation 78 as a known mixed SLSB/SLAL profile.
+[*]Mixed SLSB/SLAL diagnosis now explains when SLSB source JSON is selected over SLAL JSON, which branch root was selected, and which duplicate SLAL LE/SE branches were ignored.
+[*]Diagnosis reports now split BakaFactory-style mixed pack guidance into normal Human-only OStim, creature-capable OStim, SexLab P+, and OStim Tools project paths.
+[*]Duplicate HKX reporting now summarizes high duplicate counts with capped examples and a clear de-duplication policy instead of flooding reports with source paths.
+[*]Added Pandora Engine.log analysis for checkbox/no-output cases, with a GUI import button, CLI support, public-safe reports, and report-bundle export.
+[*]Improved behavior-output verification. The converter detects checkbox-only Pandora modules, validates ATT/FNIS rows against packaged HKX files, and gives clearer guidance when Pandora creates no generated output.
+[*]Added Delta of Venus - Sex Fantasies for OStim NG 1.0 as a known OSA/OStim NG profile. Converter 5.4 or newer repairs its case-only XML/HKX speed mismatches and reports the one source scene skipped because its HKX files are absent from the tested archive.
+[*]Source diagnosis now separates missing generated-output HKX events from missing skipped-source HKX events, so usable builds are no longer marked unsafe just because a broken source speed was dropped before packaging.
+[*]Bumped the public release line to 5.7.
+[*]Release ZIP and ZIP hash filenames now include the converter version automatically, such as Adult Animation Converter 5.7.zip.
+[*]Added BUILD_TESTER.ps1 for tester/beta packages named like Adult Animation Converter 5.7 beta.zip, with optional labels such as beta1 and beta2.
+[*]Build Recommended Package follows known-pack target and behavior-tool recommendations while respecting the user's explicit Human-only OStim output checkbox, and emits Pandora-compatible behavior output automatically.
+[*]Tidied Simple Mode into clearer Recommendation, Project Tools, Next Steps, and Reports & Files sections so install steps no longer overlap the support buttons.
+[*]Improved creature-only SLAL reports and verification metadata: final manifests record post-build verification, public JSON reports redact local paths, creature-runtime warnings are deduplicated, and scene counts distinguish JSON files from playable/menu helper scenes.
+[*]Fixed false unsafe-path failures when 7-Zip reports a source RAR/7z archive header as a drive-qualified Path = ... line.
+[*]Fixed duplicate generated OStim menu destinations in two-page category menus.
+[*]Added and documented the FlufyFox SLAL SE Mid 1.0 compatibility profile, with Pandora-compatible OStim Standalone output recommended.
+[*]Added a FlufyFox SLAL SE Creature 3.6 compatibility profile that identifies the pack as creature-only and warns that default human-only OStim output will skip every scene.
+[*]Corrected the FlufyFox SLAL SE Creature 3.6 profile so the exact known creature-only archive recommends creature output instead of default human-only output.
+[*]Improved creature-only OStim output so FlufyFox-style converted packs generate an OCreatures-compatible menu entry instead of only normal OStim menu hubs. Added OCreatures menu integration checks, report fields, and verification so creature packs with valid scenes do not disappear from the creature pack selection menu.
+[*]Added explicit OCreatures-compatible creature output mode based on the working SLAL-to-OCreatures reference structure. Creature SLAL builds now report OCreatures modes, menu/index files, actor-stage mapping, HKX filename policy, -Tn handling, and runtime requirements.
+[*]Matched OCreatures creature-slot generation to the SLAL-to-OCreatures reference mapping for A1/A2 swapping and A3+ source-slot continuation, including A4/A5 regression coverage for unusual source actor orders.
+[*]Improved OCreatures group-scene menu helpers so generated creature menu/root/category/page scenes carry enough actor entries for reachable 3p/4p/5p scenes, with a new validation/report check for menu actor coverage.
+[*]Added an OCreatures Validation report section that groups creature-output checks for HKX references, duplicate event IDs, actor-slot mapping, single selected behavior path, duplicate behavior backend registration, OCreatures menu coverage, group-scene menu actor coverage, -Tn handling, and runtime dependency check status.
+[*]Added an OCreatures reference comparison helper for maintainers. It compares folder layout, scene JSON paths, menu/index candidates, event names, behavior registration, actor roots, and metadata against a known working output without comparing or redistributing HKX binary contents.
+[*]Direct CLI archive builds and Build Recommended Package now honor exact-profile human-only/creature-output defaults automatically; explicit human-only builds still fail clearly if they would skip every scene.
+[*]Added --check-creature-runtime to scan a tester's Data/mod staging folder for creature runtime markers and expected actor roots from a converted ZIP.
+[*]Marked the known SLAL Billyy Petite Animations v8.8 SE archive as unsupported because it contains minor-coded labels in adult animation content.
+[*]Added redacted compatibility auto-fail candidate blocks to blocked source diagnosis and conversion failure reports, including the archive hash and a ready-to-copy compatibility_db.json entry template for maintainer review.
+[*]Added OStim Tools JSON/project export, validation, and import workflows.
+[*]Added OStim Tools 3.3.1-style bridge config companions for full project exports.
+[*]Added plain scene JSON folder export and project-local HKX bundles for manual authoring workflows.
+[*]Updated Nexus/readme/troubleshooting guidance for verified ZIPs versus authoring-only JSON folders.
+[/list]

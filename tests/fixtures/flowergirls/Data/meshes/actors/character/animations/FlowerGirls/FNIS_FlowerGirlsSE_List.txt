@@ -1,0 +1,5 @@
+# Synthetic Flower Girls fixture
+s FlowerKiss_A1_S1 FlowerKiss_A1_S1.hkx
+s FlowerKiss_A2_S1 FlowerKiss_A2_S1.hkx
+s FlowerKiss_A1_S2 FlowerKiss_A1_S2.hkx
+s FlowerKiss_A2_S2 FlowerKiss_A2_S2.hkx

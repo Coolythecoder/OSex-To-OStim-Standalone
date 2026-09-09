@@ -1,0 +1,548 @@
+{
+  "version": "2026.08.13",
+  "entries": [
+    {
+      "id": "slsb-anub-12-2025",
+      "packDisplayName": "SLSB Anub 12.2025",
+      "detectedSafePackName": "SLSBAnub122025",
+      "sourceFramework": "sexlabSceneBuilder",
+      "sourceTypeCodes": ["sexlabSceneBuilder", "sexlabSlal"],
+      "archiveFingerprints": [
+        "4622b4911fa5b65d073fa2b75d046bdc1ed9ec8049bd729e1f990cd2dd54ad32"
+      ],
+      "namePatterns": ["*SLSB Anub 12.2025*"],
+      "filePatterns": [
+        "*/SKSE/Sexlab/Registry/Source/*.slsb.json",
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/*/animations/*/*.hkx"
+      ],
+      "preferredSourceParser": "slsbSourceJson",
+      "fallbackSourceParsers": ["slalJson"],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB", "OStim Tools JSON project"],
+      "recommendedOutputType": "OStim Standalone or SexLab P+",
+      "recommendedBehaviorTool": "Pandora recommended",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "ostimToolsSupported": true,
+      "recommendedOStimToolsMode": "project",
+      "status": "Working with source warnings",
+      "knownWarnings": [
+        "The tested archive references 78 source HKX events that are not present; affected stages/scenes are skipped while complete scenes remain deployable.",
+        "Normal OStim users should keep Human-only OStim output enabled. Full creature output needs OCreatures, Creature Framework, matching creature assets, and Pandora.",
+        "Large solid-archive extraction and ATT patch packaging can take several minutes; the GUI remains responsive and reports elapsed time."
+      ],
+      "limitations": [
+        "Creature playback cannot be verified by the converter alone.",
+        "Custom furniture and animobject scenes may need manual in-game testing."
+      ],
+      "minimumConverterVersion": "5.7",
+      "notes": [
+        "Tested partial source fingerprint 4622b4911fa5b65d073fa2b75d046bdc1ed9ec8049bd729e1f990cd2dd54ad32 (first/last 16 MiB).",
+        "Version 5.7 diagnosis found 4 SLSB source files, 4289 HKX files, 316 preview scenes, 146 human scenes, 170 creature/mixed scenes, and 78 missing source references.",
+        "A real human-only OStim build retained all 146 human scenes, registered 1854 HKX events, and linked 146/146 deployable scenes through 6 categories and 14 pages.",
+        "A real SexLab P+ build produced 316 animations, 1887 stages, 4115 HKX files, SLSB source, and a compiled registry; deployment verification passed.",
+        "Pandora 4.4 recognized the generated human module and produced behavior output without pack errors in an isolated test root."
+      ]
+    },
+    {
+      "id": "k4-anims-1-5-se",
+      "packDisplayName": "K4 Animations 1.5 SE",
+      "detectedSafePackName": "K4Anims15SE",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "archiveFingerprints": [
+        "d977b442cfe953281647f6c1e9ac51380d00ff40c99e616896e9f20625b453c2"
+      ],
+      "namePatterns": ["*K4_anims-1.5SE*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/*/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended; Human-only output is the normal default",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "The archive contains 7 human scenes and 7 creature/mixed scenes. Disable Human-only output only for a complete OCreatures setup.",
+        "Furniture and animobject scenes still require matching runtime objects and alignment."
+      ],
+      "limitations": [
+        "Creature playback cannot be verified by the converter alone."
+      ],
+      "minimumConverterVersion": "5.7",
+      "notes": [
+        "Tested source hash d977b442cfe953281647f6c1e9ac51380d00ff40c99e616896e9f20625b453c2.",
+        "Version 5.7 diagnosis found 14 deployable scenes, 190 HKX files, and no missing source references.",
+        "Pandora 4.4 recognized the generated K4 module plus canine, falmer, and riekling FNIS creature lists and produced behavior output without pack errors in an isolated test root."
+      ]
+    },
+    {
+      "id": "bakafactory-slal-animation-78",
+      "packDisplayName": "BakaFactory SLAL Animation 78",
+      "detectedSafePackName": "BakaFactorySLALAnimation78",
+      "sourceFramework": "sexlabSceneBuilder",
+      "sourceTypeCodes": ["sexlabSceneBuilder", "sexlabSlal"],
+      "archiveFingerprints": [
+        "0adca06c0e7b67e6e156a0fc95ccac877ec133d54f0c5f8c509342e4d5e2414c"
+      ],
+      "namePatterns": ["*BakaFactory SLAL Animation 78.zip", "*bakafactory*slal*animation*78*"],
+      "filePatterns": [
+        "SLSB SE/*/SKSE/Sexlab/Registry/Source/*.slsb.json",
+        "SLAL SE/*/SLAnims/json/*.json",
+        "SLAL LE/*/SLAnims/json/*.json",
+        "*/meshes/actors/*/animations/*/*.hkx"
+      ],
+      "folderPatterns": [
+        "SLSB SE",
+        "SLAL SE",
+        "SLAL LE"
+      ],
+      "preferredSourceParser": "slsbSourceJson",
+      "fallbackSourceParsers": ["slalJson"],
+      "sourceBranchPatterns": ["SLSB SE"],
+      "ignoredBranchPatterns": ["SLAL LE", "SLAL SE"],
+      "expectedMixedSourceTypes": ["SexLab P+/SLSB source JSON", "SexLab/SLAL animation JSON"],
+      "expectedDuplicateHkxHighCount": true,
+      "supportedOutputTypes": ["OStim Standalone", "SexLab P+/SLSB", "OStim Tools JSON project"],
+      "recommendedOutputType": "OStim Standalone or SexLab P+",
+      "recommendedBehaviorTool": "Pandora recommended; creature output requires OCreatures or equivalent creature support, Creature Framework, matching creature assets, and creature-capable Pandora output",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "ostimToolsSupported": true,
+      "recommendedOStimToolsMode": "project",
+      "recommendedNormalUserWorkflow": "Build OStim Standalone with Human-only OStim output enabled. This keeps the human scenes, skips creature/mixed creature scenes, and does not require the creature runtime for the retained human-only output. Run Pandora after installing.",
+      "recommendedCreatureUserWorkflow": "Disable Human-only OStim output only with OCreatures or equivalent creature support, Creature Framework, matching creature assets, and creature-capable Pandora output installed.",
+      "recommendedPPlusWorkflow": "Build SexLab P+ if you want to keep the pack closer to its SLSB/SexLab P+ source structure.",
+      "recommendedOstimToolsWorkflow": "Supported with warnings; useful for inspecting or editing the mixed SLSB/SLAL conversion manually. Use project mode, not plain scene JSON folder mode. OStim Tools project output is not a ready-to-install package.",
+      "duplicateHkxPolicy": "This archive contains SLAL LE, SLAL SE, and SLSB SE branches. Duplicate HKX paths are expected; the converter keeps the first stable source after deterministic package-path/source-path sorting and avoids duplicate behavior registrations.",
+      "customFurniturePolicy": "Custom furniture/animobject scenes may remain normal selectable scenes when they cannot map to built-in OStim furniture.",
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Archive contains both SLSB source JSON and SLAL JSON; SLSB source JSON is preferred because it carries richer SexLab P+ metadata.",
+        "Human-only OStim output is recommended for normal OStim users.",
+        "Creature-capable output requires OCreatures or equivalent creature support, Creature Framework, matching creature assets, and creature-capable Pandora output.",
+        "Large duplicate HKX counts are expected because the archive contains multiple edition/source folders."
+      ],
+      "limitations": [
+        "Creature playback cannot be verified by the converter alone.",
+        "Custom furniture/animobject scenes may need manual in-game testing.",
+        "OStim Tools project export is for editing/inspection and is not game-installable by itself."
+      ],
+      "runtimeRequirements": [
+        "Pandora for normal human-only OStim output",
+        "OCreatures or equivalent creature support, Creature Framework, matching creature assets, and creature-capable Pandora output for full creature output"
+      ],
+      "minimumConverterVersion": "5.4",
+      "ostimToolsNotes": [
+        "Project mode is recommended so mixed SLSB metadata, furniture, and creature details stay inspectable.",
+        "OStim Tools project output is not a ready-to-install package."
+      ],
+      "notes": [
+        "Tested source hash 0adca06c0e7b67e6e156a0fc95ccac877ec133d54f0c5f8c509342e4d5e2414c.",
+        "Diagnosis found 4 SLSB source JSON files, 8 SLAL JSON files, 3439 HKX files, 151 preview OStim scenes, 58 human scenes, 93 creature/mixed scenes, 5 furniture scenes, and no missing referenced HKX events.",
+        "The converter should select the SLSB SE source branch and ignore duplicate HKX candidates from SLAL LE/SE branches."
+      ]
+    },
+    {
+      "id": "k4-style-slal",
+      "packDisplayName": "K4-style SLAL archive",
+      "detectedSafePackName": "K4StyleSLAL",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "namePatterns": ["*k4*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/character/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended; human-only OStim output skips creature scenes by default",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "creatureNotes": [
+        "Disable Human-only OStim output only if OCreatures or another OStim creature extension, Creature Framework, matching creature assets, and creature-capable behavior generation are installed."
+      ],
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Creature-root HKX files are skipped by default for OStim Standalone output.",
+        "Creature-root HKX files need matching creature runtime assets and behavior generation if creature output is enabled.",
+        "Furniture scenes may only appear from matching in-game furniture or supported furniture metadata."
+      ],
+      "limitations": [
+        "Creature playback cannot be verified by the converter alone.",
+        "Furniture scene discovery depends on runtime furniture metadata."
+      ],
+      "minimumConverterVersion": "5.7",
+      "notes": [
+        "Reconvert from the original SLAL archive after updating the converter.",
+        "Install the generated ZIP, run Pandora, and deploy Pandora output before testing in game."
+      ]
+    },
+    {
+      "id": "anubs-style-slal",
+      "packDisplayName": "Anubs-style SLAL archive",
+      "detectedSafePackName": "AnubsStyleSLAL",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "namePatterns": ["*anub*", "*anubs*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/character/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "creatureNotes": [
+        "Large mixed Anubs-style packs should normally keep Human-only OStim output enabled. Disable only for a full creature-capable OStim setup."
+      ],
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Furniture and object scenes need matching runtime furniture/object alignment.",
+        "If the source JSON references HKX events missing from the archive, use the full animation pack or matching extra pack."
+      ],
+      "limitations": [
+        "Spawned furniture and invisible furniture categories may need manual in-game testing."
+      ],
+      "minimumConverterVersion": "5.7",
+      "notes": [
+        "Use Diagnose Source Archive before building to confirm HKX references are present."
+      ]
+    },
+    {
+      "id": "billyy-petite-v8-8-se-blocked",
+      "packDisplayName": "SLAL Billyy Petite Animations v8.8 SE",
+      "detectedSafePackName": "UnsupportedBillyyPetite88SE",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "archiveFingerprints": [
+        "2c3fe531c1c1d8deb45db492789d46cec840098b70dab7845890fbe84bb28e55"
+      ],
+      "namePatterns": ["*billyy*petite*8.8*", "*billyy*petite*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json"
+      ],
+      "supportedOutputTypes": ["unsupported"],
+      "recommendedOutputType": "unsupported",
+      "recommendedBehaviorTool": "unsupported",
+      "ostimToolsSupported": false,
+      "recommendedOStimToolsMode": "unsupported",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "status": "unsupported",
+      "knownIssues": [
+        "This specific archive is blocked because it contains minor-coded labels in adult animation content."
+      ],
+      "knownWarnings": [
+        "Do not build, install, convert, or export this archive with Adult Animation Converter.",
+        "Use an adult-only source archive instead."
+      ],
+      "limitations": [
+        "No supported outputs are available for this archive."
+      ],
+      "minimumConverterVersion": "5.3",
+      "notes": [
+        "Tested source hash 2c3fe531c1c1d8deb45db492789d46cec840098b70dab7845890fbe84bb28e55.",
+        "The broad Billyy-style compatibility profile remains for adult-only Billyy SLAL packs; this specific archive is explicitly blocked."
+      ]
+    },
+    {
+      "id": "billyy-style-slal",
+      "packDisplayName": "Billyy-style SLAL archive",
+      "detectedSafePackName": "BillyyStyleSLAL",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "namePatterns": ["*billyy*", "*billy*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/character/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": true,
+      "creatureNotes": [
+        "Large mixed Billyy-style packs should normally keep Human-only OStim output enabled. Disable only for a full creature-capable OStim setup."
+      ],
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Furniture-heavy packs should be tested from matching in-game furniture.",
+        "Creature scenes are skipped by default for OStim Standalone output and need creature runtime setup only if creature output is enabled."
+      ],
+      "limitations": [
+        "Furniture/object category mapping is structural and cannot guarantee every in-game placement."
+      ],
+      "minimumConverterVersion": "2026.06.07-compatibility-polish",
+      "notes": [
+        "Use the original full SLAL archive, not a patch-only archive."
+      ]
+    },
+    {
+      "id": "flufyfox-slal-se-c-3-6",
+      "packDisplayName": "FlufyFox SLAL SE Creature 3.6",
+      "detectedSafePackName": "FlufyFoxSLALSECreature36",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "archiveFingerprints": [
+        "5f8ad6abee306fe684cb4cc7a0840a0c006a7881320fe7a17c4c4315797d019e"
+      ],
+      "namePatterns": ["*flufyfox*slal*se*c*3.6*", "*flufyfox*creature*"],
+      "filePatterns": [
+        "*/SLAnims/json/FlufyFoxC.json",
+        "*/meshes/actors/*/animations/FlufyFoxC/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora creature-capable output; requires OCreatures or another OStim creature extension, Creature Framework, matching creature assets, and deployed Pandora output",
+      "expectedOStimSceneJsonFiles": 106,
+      "expectedDeployableCreatureScenes": 46,
+      "expectedHkxPackaged": 521,
+      "expectedBehaviorEvents": 521,
+      "expectedCreatureRoots": [
+        "atronachflame",
+        "canine",
+        "deer",
+        "dlc01/chaurusflyer",
+        "dlc02/hmdaedra",
+        "dlc02/riekling",
+        "draugr",
+        "falmer",
+        "giant",
+        "goat",
+        "hagraven",
+        "sabrecat",
+        "skeever",
+        "spriggan",
+        "troll",
+        "werewolfbeast"
+      ],
+      "defaultHumanOnlyOStim": false,
+      "creatureOutputRecommended": true,
+      "ocreaturesOutputRecommended": true,
+      "creatureRuntimeRequired": true,
+      "creatureMenuIntegrationRequired": "ocreatures_menu",
+      "ocreaturesMenuIntegrationRequired": true,
+      "ocreaturesActorMapping": "slal_creature_a1_to_s1_actor1_a2_to_s1_actor0_a3_plus_identity",
+      "ocreaturesPreserveHkxNames": false,
+      "ocreaturesHkxFilenamePolicy": "event_renamed_for_scene_behavior_consistency",
+      "ocreaturesRequiresTnFlag": true,
+      "warnIfOCreaturesMenuEntryMissing": true,
+      "creatureNotes": [
+        "This is a creature-only source archive. The known-pack profile recommends creature output instead of the generic human-only OStim default.",
+        "Build for OStim Standalone only with a full creature-capable OStim setup.",
+        "Converted OStim output must include an OCreatures-compatible menu entry; normal OStim human menu hubs alone are not enough for this pack to appear in the OCreatures creature menu."
+      ],
+      "status": "needs creature runtime",
+      "knownWarnings": [
+        "Creature-only source archive: generic human-only OStim output would remove all scenes, so this exact profile recommends creature output.",
+        "Creature output requires OCreatures or another OStim creature extension, Creature Framework, matching creature assets, and creature-capable behavior generation.",
+        "Archive is nested under a mod folder; install the converter-generated ZIP, not the original nested archive."
+      ],
+      "limitations": [
+        "Creature playback cannot be verified by the converter alone.",
+        "Runtime playback still requires OCreatures or another OStim creature extension, Creature Framework, matching creature assets, and creature-capable Pandora output.",
+        "The original archive includes a plugin/anim-object file; converted OStim output still depends on the user's creature runtime stack."
+      ],
+      "minimumConverterVersion": "5.4",
+      "ostimToolsSupported": true,
+      "recommendedOStimToolsMode": "project",
+      "ostimToolsNotes": [
+        "Project export is for editing only; build a creature-enabled OStimSA ZIP for game testing."
+      ],
+      "notes": [
+        "Tested source hash 5f8ad6abee306fe684cb4cc7a0840a0c006a7881320fe7a17c4c4315797d019e.",
+        "Current OStim creature output writes 46 deployable creature scenes plus OCreatures menu adapter helpers for a total of 106 scene JSON files.",
+        "Diagnosis found 1 SLAL JSON file, 521 packaged HKX files, 46 creature scenes, and no missing HKX references.",
+        "This profile prevents the generic K4-style creature-root profile from being selected for this FlufyFox archive."
+      ]
+    },
+    {
+      "id": "flufyfox-slal-se-mid-1-0",
+      "packDisplayName": "SLAL FlufyFox SE Mid 1.0",
+      "detectedSafePackName": "SLALFlufyFoxSEMid10",
+      "sourceFramework": "sexlabSlal",
+      "sourceTypeCodes": ["sexlabSlal"],
+      "archiveFingerprints": [
+        "27fbf808df5f40bd22fbf6a359e1a8135839a5a277d6afd21ddbd066f35654ab"
+      ],
+      "namePatterns": ["*flufyfox*mid*"],
+      "filePatterns": [
+        "*/SLAnims/json/*.json",
+        "*/meshes/actors/character/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended; use the current converter for Pandora-compatible Nemesis/ATT OStim Standalone output",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": false,
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Archive is nested under a mod folder; install the converter-generated ZIP, not the original nested archive.",
+        "OStim Tools bridge config stores the first speed as fileName while scene JSON keeps every speed."
+      ],
+      "limitations": [
+        "Only two human scenes were observed in the tested source archive."
+      ],
+      "minimumConverterVersion": "5.3",
+      "ostimToolsSupported": true,
+      "recommendedOStimToolsMode": "project",
+      "ostimToolsNotes": [
+        "Full project export writes a bridge config companion under configs/bridge/ostimConfigs/."
+      ],
+      "notes": [
+        "Tested source hash 27fbf808df5f40bd22fbf6a359e1a8135839a5a277d6afd21ddbd066f35654ab.",
+        "Diagnosis found 1 SLAL JSON file, 20 HKX files, 2 deployable human scenes, and no missing HKX references.",
+        "Use the current converter so OStim Standalone output writes the Pandora-compatible behavior patch."
+      ]
+    },
+    {
+      "id": "delta-of-venus-ostim-ng-1-0",
+      "packDisplayName": "Delta of Venus - Sex Fantasies for OStim NG 1.0",
+      "detectedSafePackName": "DeltaOfVenusOStimNG10",
+      "sourceFramework": "osexOsaXml",
+      "sourceTypeCodes": ["osexOsaXml"],
+      "archiveFingerprints": [
+        "ba0777999ffd543d5b9d18d851ba96c67cdf4d2b7ba8b99457fc300da3cff17f"
+      ],
+      "namePatterns": [
+        "*Delta of Venus-84608-1-0-1677283108*.7z",
+        "*Delta of Venus*OStim NG*"
+      ],
+      "filePatterns": [
+        "*/meshes/0SA/mod/0Sex/scene/*.xml",
+        "*/meshes/actors/character/animations/FG3D_A/*.hkx",
+        "*/SKSE/Plugins/OStim/actions/*.json"
+      ],
+      "folderPatterns": [
+        "*Delta of Venus - Sex Fantasies for OStim NG*"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "OStim Tools JSON project"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended; Nemesis can be used with generated FNIS/ATT data",
+      "defaultHumanOnlyOStim": true,
+      "creatureOutputRecommended": false,
+      "creatureRuntimeRequired": false,
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Archive is nested under a mod folder; install the converter-generated ZIP, not the original nested archive.",
+        "Source XML references two speed events with different HKX filename casing; converter 5.4 or newer repairs those by matching packaged HKX casing.",
+        "The tested source archive is missing the FFM_Sx-MistressTender-N-Stand_S3 actor HKX files, so that one scene is dropped.",
+        "Some legacy OSA menu helper references are removed because they do not map to generated OStim Standalone scenes."
+      ],
+      "limitations": [
+        "One source scene is not converted unless a fuller archive provides FFM_Sx-MistressTender-N-Stand_S3_0, _1, and _2 HKX files.",
+        "Legacy OSA helper/menu behavior cannot be perfectly preserved as normal OStim Standalone scene navigation."
+      ],
+      "runtimeRequirements": [
+        "Pandora or Nemesis after installing the generated OStim Standalone ZIP"
+      ],
+      "minimumConverterVersion": "5.4",
+      "ostimToolsSupported": true,
+      "recommendedOStimToolsMode": "project",
+      "recommendedNormalUserWorkflow": "Build OStim Standalone, install only the converter-generated ZIP, run Pandora or Nemesis, then test the generated Delta of Venus menu. Expect one source scene to be skipped because its HKX files are absent from the tested archive.",
+      "recommendedOstimToolsWorkflow": "Project mode is useful for inspection/editing only; build a verified OStim Standalone ZIP before installing.",
+      "ostimToolsNotes": [
+        "Project export is not game-installable by itself.",
+        "Use the generated ZIP workflow for in-game testing."
+      ],
+      "notes": [
+        "Tested source hash ba0777999ffd543d5b9d18d851ba96c67cdf4d2b7ba8b99457fc300da3cff17f.",
+        "Diagnosis found 115 OSA XML scene files, 301 HKX files, 114 converted human preview scenes, and no creature or furniture scenes.",
+        "Converter 5.4 repairs MF_Po-gazeFemale-F-MMast_S3 and MF_Po-gazeFemale-H-MMast_S4 to the HKX casing used by the source archive.",
+        "The remaining missing HKX events are FFM_Sx-MistressTender-N-Stand_S3_0, FFM_Sx-MistressTender-N-Stand_S3_1, and FFM_Sx-MistressTender-N-Stand_S3_2.",
+        "Public mod index data identifies Nexus ID 84608 as Delta of Venus - Sex Fantasies for OStim NG by FG3D, version 1.0."
+      ]
+    },
+    {
+      "id": "flowergirls-fnis-animation",
+      "packDisplayName": "FlowerGirls FNIS animation archive",
+      "detectedSafePackName": "FlowerGirlsFNIS",
+      "sourceFramework": "flowergirlsFnis",
+      "sourceTypeCodes": ["flowergirlsFnis"],
+      "namePatterns": ["*flowergirls*", "*flower girls*"],
+      "filePatterns": [
+        "*/meshes/actors/character/animations/*/FNIS*_List.txt",
+        "*/meshes/actors/character/animations/*/*.hkx"
+      ],
+      "supportedOutputTypes": ["OStim Standalone"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended",
+      "status": "Working with warnings",
+      "knownWarnings": [
+        "Only animation content is converted. Quest/script/plugin FlowerGirls mods should be installed normally."
+      ],
+      "limitations": [
+        "Script-only FlowerGirls mods do not contain animation data for conversion."
+      ],
+      "minimumConverterVersion": "2026.06.07-compatibility-polish",
+      "notes": [
+        "Diagnosis should show at least one FNIS animation list and matching HKX files."
+      ]
+    },
+    {
+      "id": "script-plugin-only",
+      "packDisplayName": "Script/plugin-only archive",
+      "detectedSafePackName": "UnsupportedScriptPluginOnly",
+      "sourceFramework": "unsupportedPlugin",
+      "sourceTypeCodes": ["unsupportedPlugin"],
+      "filePatterns": [
+        "*.esp",
+        "*.esm",
+        "*.esl",
+        "*/scripts/*.pex",
+        "*/fomod/ModuleConfig.xml"
+      ],
+      "supportedOutputTypes": [],
+      "recommendedOutputType": "unsupported",
+      "recommendedBehaviorTool": "unsupported",
+      "status": "Unsupported archive type",
+      "knownWarnings": [
+        "This archive appears to contain scripts/plugins/support files instead of animation data."
+      ],
+      "knownIssues": [
+        "No scene metadata or HKX animation payload can be converted."
+      ],
+      "limitations": [
+        "Install script/plugin mods normally with their original framework."
+      ],
+      "minimumConverterVersion": "2026.06.07-compatibility-polish",
+      "notes": [
+        "Select the original animation pack archive, not a quest/script patch."
+      ]
+    },
+    {
+      "id": "existing-ostim-standalone",
+      "packDisplayName": "Existing OStim Standalone archive",
+      "detectedSafePackName": "ExistingOStimStandalone",
+      "sourceFramework": "ostimStandalone",
+      "sourceTypeCodes": ["ostimStandalone"],
+      "filePatterns": [
+        "*/SKSE/Plugins/OStim/scenes/*.json",
+        "*/SKSE/Plugins/OStim/scenes/*/*.json"
+      ],
+      "supportedOutputTypes": ["OStim Standalone", "SexLab/SLAL", "SexLab P+/SLSB"],
+      "recommendedOutputType": "OStim Standalone",
+      "recommendedBehaviorTool": "Pandora recommended",
+      "status": "Working",
+      "knownWarnings": [
+        "Existing OStim packs are normalized and repackaged; always verify the converted ZIP."
+      ],
+      "limitations": [],
+      "minimumConverterVersion": "2026.06.07-compatibility-polish",
+      "notes": [
+        "Use this when repackaging or exporting to SexLab, not as a replacement for a native working OStim mod."
+      ]
+    }
+  ]
+}

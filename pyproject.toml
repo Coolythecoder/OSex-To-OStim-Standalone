@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skyrim-animation-converter"
+version = "2.0.0"
+description = "Bidirectional, loss-aware Skyrim animation-pack converter"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Coolythecoder contributors"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+  "ruff>=0.5,<1",
+]
+
+[project.scripts]
+animation-converter = "animation_converter.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["animation_converter*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+exclude = ["tests/test_converter.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

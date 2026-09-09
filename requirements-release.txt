@@ -1,0 +1,12 @@
+# Pinned Windows release environment. BUILD_RELEASE.ps1 installs only these packages
+# into a fresh virtual environment so unrelated global modules cannot leak into the app.
+altgraph==0.17.5
+customtkinter==5.2.2
+darkdetect==0.8.0
+packaging==26.3
+pefile==2024.8.26
+Pillow==12.2.0
+pyinstaller==6.22.2
+pyinstaller-hooks-contrib==2026.6
+pywin32-ctypes==0.2.3
+setuptools==84.0.0

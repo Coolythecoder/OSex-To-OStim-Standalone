@@ -1,0 +1,58 @@
+{
+  "name": "Example Idle",
+  "modpack": "Example Pack",
+  "length": 2.5,
+  "navigations": [
+    {
+      "origin": "ExternalEntry",
+      "description": "Example Pack",
+      "noWarnings": true,
+      "fixtureNavExtension": "preserve"
+    },
+    {
+      "destination": "ExampleNext",
+      "description": "Next",
+      "icon": "OStim/symbols/arrow_right"
+    }
+  ],
+  "speeds": [
+    {
+      "animation": "ExampleIdleEvent",
+      "playbackSpeed": 1.0,
+      "displaySpeed": 1.0,
+      "fixtureSpeedExtension": 7
+    }
+  ],
+  "defaultSpeed": 0,
+  "tags": [
+    "idle",
+    "example"
+  ],
+  "actors": [
+    {
+      "intendedSex": "male",
+      "animationIndex": 0,
+      "offset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "r": 0.0
+      }
+    },
+    {
+      "intendedSex": "female",
+      "animationIndex": 1
+    }
+  ],
+  "actions": [
+    {
+      "type": "kissing",
+      "actor": 0,
+      "target": 1,
+      "doPeaks": false
+    }
+  ],
+  "fixtureExtension": {
+    "preserve": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "SLAL Fixture",
+  "animations": [
+    {
+      "id": "FixtureCouple",
+      "name": "Fixture Couple",
+      "tags": "Romantic,Standing,MF",
+      "actors": [
+        {
+          "type": "Male",
+          "stages": [
+            {
+              "id": "FixtureCouple_A1_S1"
+            },
+            {
+              "id": "FixtureCouple_A1_S2"
+            }
+          ]
+        },
+        {
+          "type": "Female",
+          "stages": [
+            {
+              "id": "FixtureCouple_A2_S1"
+            },
+            {
+              "id": "FixtureCouple_A2_S2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

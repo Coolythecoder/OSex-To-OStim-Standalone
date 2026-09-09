@@ -1,0 +1,23 @@
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.release-venv/
+.nexus-source-staging/
+
+# Local build and packaging output
+build/
+dist/
+*.spec
+/Adult Animation Converter*.zip
+/Adult Animation Converter*.zip.sha256.txt
+
+# Converter scratch/output reports
+$tmp/
+.aac_tmp/
+*_deploy_verify.json
+*_deploy_verify.txt
+*_conversion_report.json
+*_conversion_report_README.txt
+*_source_diagnosis.json
+*_source_diagnosis.txt

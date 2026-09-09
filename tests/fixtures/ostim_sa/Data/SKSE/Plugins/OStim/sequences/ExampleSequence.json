@@ -1,0 +1,17 @@
+{
+  "scenes": [
+    {
+      "id": "ExampleIdle",
+      "duration": 2.5,
+      "fixtureEntryExtension": "preserve"
+    },
+    {
+      "id": "ExampleNext",
+      "duration": 3.0
+    }
+  ],
+  "tags": [
+    "example"
+  ],
+  "fixtureSequenceExtension": true
+}

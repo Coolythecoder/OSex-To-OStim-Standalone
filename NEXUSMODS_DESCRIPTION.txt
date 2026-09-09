@@ -1,0 +1,399 @@
+[center][size=5]Adult Animation Pack Converter - Version 6.0[/size][/center]
+[center]Convert supported Skyrim adult animation archives into verified OStim Standalone, SexLab/SLAL, SexLab P+/SLSB packages, or editable OStim Tools / scene JSON projects.[/center]
+
+[b]Short version[/b]
+
+Adult Animation Pack Converter rebuilds supported animation pack archives into cleaner outputs for modern workflows. It does not edit your Skyrim folder directly. It creates a new output package or project folder, writes reports, and tells you what to do next.
+
+[list]
+[*][b]Ready-to-install workflow[/b] - build verified OStim Standalone, SexLab/SLAL, or SexLab P+/SLSB ZIPs.
+[*][b]Authoring workflow[/b] - generate editable OStim Tools / AAC project folders or plain scene JSON folders for manual work.
+[*][b]Support workflow[/b] - diagnose source archives, verify generated ZIPs, create Nexus-safe report bundles, and export archive structure lists without sharing animation assets.
+[/list]
+
+For most OStim Standalone users, use [b]Simple Mode[/b], diagnose the archive, then click [b]Build Recommended Package[/b]. Pandora is the recommended behavior tool for normal OStim Standalone output.
+
+[b]Version 6.0 highlights[/b]
+
+[list]
+[*][b]Automatic Skyrim LE HKX upgrade.[/b] The converter detects 32-bit Skyrim LE Havok animations and converts isolated working copies to SE/AE format when Creation Kit HavokBehaviorPostProcess, Cathedral Assets Optimizer hkx32to64, or hkxcmd is available. Source archives and existing SE/AE files remain unchanged, and invalid conversion output is rejected.
+[*][b]Transparent Nexus Source download.[/b] A separate source edition contains no EXE, bundled Python runtime, DLL/PYD, batch/PowerShell launcher, or nested archive. Its build audits file extensions and signatures and includes payload SHA256 hashes. This removes common executable-upload quarantine triggers, although Nexus controls final moderation.
+[*][b]SexLab/Pandora recognition fix.[/b] Classic SexLab/SLAL exports are auto-discovered from their generated FNIS_*_List.txt files and are not expected to appear as selectable Pandora patches. Reports now show the exact FNIS Mod name to confirm in Engine.log, and the log importer diagnoses missing auto-discovery separately.
+[*][b]Cleaner Windows builds.[/b] Release builds now use a fresh pinned Python environment, PyInstaller one-folder mode with UPX disabled, embedded Windows version metadata, a forbidden-dependency audit, BUILD_PROVENANCE.txt, and optional Authenticode signing support.
+[*][b]Nemesis baseline false-positive fix.[/b] OStim packs that include inherited Nemesis default male/female behavior catalogs are no longer incorrectly blocked by vanilla Skyrim behavior filenames. Scene metadata, archive paths, ATT registrations, and custom animation paths remain protected by the adult-only content check.
+[*][b]Sanguine Seductions validation.[/b] The original 3.0 archive now diagnoses successfully and exports to SexLab with 17 animations, 34 registered HKX events, and no missing deployment events.
+[*][b]Human-only setting fix.[/b] Build Recommended Package now respects the checkbox you selected instead of silently replacing it with a compatibility-profile default.
+[*][b]Creature runtime scan fix.[/b] Missing OCreatures or Creature Framework markers are now reported as inconclusive when a virtualized MO2/Vortex setup may hide them; missing required actor-root behavior files still fail.
+[*][b]SexLab P+ actor fix.[/b] Ordinary male actors no longer export with the futa flag. Explicit futa flags from SLSB source data are preserved.
+[*][b]Long-job feedback.[/b] The GUI now writes periodic Still working messages while large solid archives or behavior jobs are running.
+[*][b]Pandora idle-actor fix.[/b] OStim Standalone builds now use the Nemesis/ATT module format Pandora actually assembles. Verification blocks old Pandora_Engine checkbox-only packages that could appear in Pandora while producing no playable motion.
+[*][b]Real Pandora validation.[/b] K4 and SLSB Anub human ATT/creature FNIS registrations were tested with Pandora Behaviour Engine+ 4.4 in isolated Skyrim roots. The log analyzer now recognizes current merge-success wording and checks output files beside the imported log.
+[*][b]GUI and large-pack fixes.[/b] Fixed remaining background-thread Tk value access, the zip_out build error, solid 7z handling, multi-JSON SLAL naming, actor-root selection, and behavior HKX files being mistaken for animation clips.
+[*][b]Report crash fix.[/b] Fixed the remaining Baka/HCOS [i]'str' object has no attribute 'get'[/i] failure caused by privacy-safe truncated report examples, hardened legacy JSON/report/project parsing, and added traceback error logs plus Copy Error Summary/Open Error Log support actions.
+[*][b]Real Baka pack validation.[/b] A BakaFactory SLAL Animation 78 human-only conversion completed with 58 deployable scenes, 672 registered HKX events, full generated-menu reachability, and no missing deployment events.
+[*][b]OStim Tools / JSON workflow.[/b] Added editable OStim Tools / AAC project exports, plain scene JSON folder exports, project validation, project import, project reports, and project README/manifest files. Full project exports can include a project-local HKX asset bundle and an OStim Tools 3.3.1-style bridge config companion.
+[*][b]Human-only OStim output.[/b] Mixed SLAL packs skip creature/animal-root scenes by default for normal OStim builds. Creature output can still be enabled by advanced users who have the required creature runtime stack.
+[*][b]OCreatures-compatible creature output.[/b] Creature SLAL builds can now generate OCreatures menu/index adapter entries, report the SLAL-to-OCreatures actor-stage mapping, and verify that retained creature scenes are reachable from the OCreatures menu path.
+[*][b]Cleaner Simple Mode.[/b] Simple Mode is organised around archive selection, diagnosis, recommended build, next steps, reports, and project tools.
+[*][b]Build Recommended Package improvements.[/b] Known-pack target and behavior-tool recommendations are honoured, the user's Human-only checkbox remains authoritative, and OStim Standalone builds receive Pandora-compatible behavior registration automatically.
+[*][b]Better creature-only handling.[/b] Creature-only SLAL profiles can recommend creature output instead of human-only output. Reports now make creature runtime requirements clearer and avoid repeating the same warning repeatedly.
+[*][b]Improved verification metadata.[/b] Final manifests record post-build verification results, failed outputs are marked [i]FAILED_DoNotInstall_[/i], and stale generated ZIPs are reported clearly.
+[*][b]Large-pack menu fixes.[/b] Generated OStim menu hubs now use categories/pages for large packs, deduplicate page navigation, and verify menu reachability.
+[*][b]Public-safe reports.[/b] Normal JSON/text reports redact local paths where possible. Debug mode can still include deeper internal details when needed.
+[*][b]Compatibility/reporting tools.[/b] Added clearer known-pack matching, redacted compatibility auto-fail candidate blocks for maintainer review, archive structure export, Copy Log, Copy Install Steps, and Open Last Report behavior.
+[*][b]7-Zip and packaging fixes.[/b] 7-Zip drive-qualified archive header lines no longer trigger false unsafe-path failures. Release ZIP/hash filenames now include the converter version automatically.
+[/list]
+
+[b]Supported source archives[/b]
+
+[list]
+[*][b]OSex / OSex+ / OpenSex / OSA packs[/b] - supported when the archive contains OSA-style XML scene files and matching HKX animations.
+[*][b]SexLab / SLAL packs[/b] - supported when the archive contains SLAnims JSON files and matching HKX animations.
+[*][b]SexLab P+ / SLSB source packs[/b] - supported when the archive contains SLSB source JSON or usable SexLab scene data.
+[*][b]FlowerGirls FNIS animation packs[/b] - supported when the archive contains FNIS_FlowerGirlsSE_List.txt or another FlowerGirls-marked FNIS list with matching HKX animations.
+[*][b]Existing OStim Standalone packs[/b] - supported when the archive contains OStim scene JSON and HKX animations.
+[*][b]Older OStim JSON packs[/b] - supported when scene JSON and animation files can be found.
+[*][b]Structure-compatible HKX animation archives[/b] - supported where enough source metadata can be inferred or generated safely.
+[/list]
+
+[b]Output options[/b]
+
+[list]
+[*][b]OStim Standalone ZIP[/b] - creates a verified OStim Standalone package from a supported source archive.
+[*][b]SexLab / SLAL ZIP[/b] - exports supported archives as a SexLab Animation Loader package.
+[*][b]SexLab P+ / SLSB ZIP[/b] - writes SLSB source, a compiled .slr registry, P+ prefixed behavior entries, and matching behavior graph hooks when available.
+[*][b]OStim Tools JSON Project[/b] - creates an editable OStim Tools / AAC project folder with scene JSON, reports, manifest, README, optional action scaffolds, optional alignment data, optional HKX asset bundle, and optional bridge config companion. This is [b]not[/b] a ready-to-install mod by itself.
+[*][b]Scene JSON Folder[/b] - creates editable scene JSON files plus reports for manual workflows.
+[/list]
+
+[b]Important: OStim Tools JSON is not a game mod[/b]
+
+OStim Tools / JSON project output is for editing, authoring, review, and manual cleanup. It is not the same as a ready-to-install OStim Standalone ZIP.
+
+To use edited OStim Tools / JSON output in game, import or rebuild it through the normal OStim Standalone package workflow, then run verification and install the generated ZIP.
+
+[b]Recommended workflow[/b]
+
+[list=1]
+[*]Run [i]Adult Animation Converter.pyw[/i] from the Nexus Source edition, or [i]Adult Animation Converter.exe[/i] from the standalone edition.
+[*]Use [b]Simple Mode[/b] unless you need custom/advanced paths.
+[*]Drag a .zip, .7z, or .rar archive onto the app, or choose it with the archive picker.
+[*]Click [b]Diagnose Archive[/b].
+[*]Review the detected source type, known-pack match, recommended output, behavior tool, and warning summary.
+[*]Click [b]Build Recommended Package[/b].
+[*]Wait for automatic post-build verification.
+[*]If verification passes, install the generated ZIP with MO2, Vortex, or another mod manager.
+[*]Run the recommended behavior tool, usually Pandora for OStim Standalone output.
+[*]Enable/deploy the generated behavior output if your mod manager requires it.
+[*]Test in game.
+[/list]
+
+If verification fails, do not install the generated ZIP. Open the human-readable report or create a report bundle and attach it when reporting the issue.
+
+[b]Advanced users[/b]
+
+Advanced Mode exposes manual controls for:
+
+[list]
+[*]OStim Standalone, SexLab/SLAL, SexLab P+, OStim Tools, and scene JSON output.
+[*]SFX fallback action.
+[*]OStim menu icon and menu-entry generation.
+[*]Human-only OStim output.
+[*]Pandora-compatible behavior patch status.
+[*]SexLab P+ export and SexLab discovery tags.
+[*]Original mod author metadata.
+[*]Alignment JSON emit/merge paths.
+[*]7-Zip executable path.
+[*]OStim Tools project/template options.
+[*]Debug mode.
+[/list]
+
+[b]Behavior generation[/b]
+
+[b]OStim Standalone[/b]
+
+Normal OStim Standalone packages use a pack-specific [b]Pandora-compatible Nemesis/ATT patch[/b]. The generated ZIP includes:
+
+[code]Nemesis_Engine/mod/<UniqueCode>/[/code]
+[code]meshes/actors/character/animations/<PackName>/ATT_<UniqueCode>_animlist.txt[/code]
+
+Creature builds additionally include actor-root FNIS lists and matching behavior hooks. Each pack receives a unique code, avoiding shared root AnimData files and cross-pack overwrites. Run Pandora after installing the generated ZIP.
+
+[b]Older Pandora checkbox packages[/b]
+
+Older converter builds could write [i]Pandora_Engine/mod/<PackName>/info.xml[/i] with animationdata/animationsetdata folders. Pandora may display those modules but does not assemble that payload. Reconvert the original archive; current verification deliberately fails that layout.
+
+[b]SexLab / SLAL / P+[/b]
+
+SexLab and P+ exports generate the files needed for SexLab/SLAL workflows, including SLAL JSON/source, renamed stage HKX files, FNIS animation lists, source-provided behavior graph hooks where available, SexLab sound/stage metadata, and P+ registry/SLSB output when selected.
+
+Pandora auto-discovers these SexLab exports from [i]FNIS_<Pack>_List.txt[/i]. They are not expected to appear as selectable Pandora checkboxes. After Pandora finishes, open Engine.log and confirm it contains [i]INFO : FNIS Mod ... : FNIS_<Pack>_List[/i], then register or enable the pack in SexLab Animation Loader in game.
+
+SexLab discovery tags are optional. Enable them if you want [i]AdultAnimationConverter[/i], [i]Converted[/i], and the safe pack name added for easier filtering. Leave them disabled for cleaner source-style tags.
+
+[b]Human-only OStim output and creature packs[/b]
+
+Human-only OStim output is enabled by default for normal OStim Standalone builds. It skips creature and mixed human/creature scenes from mixed SLAL packs and reports how many scenes, roots, HKX files, and behavior events were skipped.
+
+Build Recommended Package uses the value currently shown in the Human-only checkbox. A known-pack recommendation is displayed and logged, but it does not silently change your explicit selection.
+
+Disable Human-only OStim output only if you intentionally want creature scenes and have the required runtime stack. Creature output may require:
+
+[list]
+[*]OCreatures or another OStim creature extension.
+[*]Creature Framework.
+[*]Matching creature assets, such as More Nasty Critters or the source pack's required assets.
+[*]Creature-capable Pandora behavior generation.
+[/list]
+
+The converter can package creature scenes and actor roots when enabled, and it now writes OCreatures-style OCr<CreatureRoot> menu/index adapter entries for creature-focused OStim output. Reports show whether the OCreatures menu entry was generated, whether retained creature scenes are reachable from that path, which actor-stage mapping was used, and whether FNIS-style creature rows include the expected -Tn flag. The converter does not install the creature runtime stack for you. Creature-only compatibility profiles may recommend creature output instead of human-only output when human-only output would skip every scene.
+
+[b]OStim menu hubs[/b]
+
+When [i]Add OStim menu entry[/i] is enabled, the converter creates a generated OStim menu hub linked from OStim's built-in idle/menu scenes.
+
+[list]
+[*]Small packs can link directly from the pack hub.
+[*]Large packs are split into generated categories and pages.
+[*]Categories include All, Sex, Oral, Vaginal, Anal, Furniture, Creature, Group, and Other where applicable.
+[*]Generated scenes can receive return navigation back to the pack menu.
+[*]Related scenes can receive Previous/Next navigation when they can be safely grouped.
+[*]Verify checks for empty menu hubs, missing destinations, duplicate menu links, and unlinked hub scenes.
+[/list]
+
+Furniture-bound scenes may still need to be started from matching furniture. Creature scenes still require a creature-capable OStim setup.
+
+[b]Source archive diagnosis[/b]
+
+Use [b]Diagnose Archive[/b] before building if you are unsure what a pack contains.
+
+Diagnosis can report:
+
+[list]
+[*]Detected source type and confidence.
+[*]Known compatibility profile match.
+[*]Recommended output type.
+[*]Recommended behavior tool.
+[*]Human-only or creature-output recommendation.
+[*]Scene/animation and HKX counts.
+[*]Missing referenced HKX files.
+[*]Creature and furniture indicators.
+[*]Nested archive or Data-wrapper notes.
+[*]Unsupported plugin/script-only archives.
+[*]Blocked-source / compatibility auto-fail candidate details for maintainer review.
+[*]Recommended next action.
+[/list]
+
+Use [b]Copy Diagnosis Summary[/b] when posting support requests.
+
+[b]Verify converted ZIPs[/b]
+
+Post-build verification runs automatically for normal builds. You can also click [b]Verify Converted ZIP[/b] manually.
+
+For OStim ZIPs, verification checks include:
+
+[list]
+[*]Scene JSON validity.
+[*]HKX file presence.
+[*]Behavior output mode.
+[*]Pandora metadata.
+[*]Legacy ATT/Nemesis output when intentionally selected.
+[*]Scene events missing behavior registration.
+[*]Behavior events pointing to missing HKX files.
+[*]Duplicate/conflicting behavior registrations.
+[*]Duplicate animation events and duplicate behavior lists.
+[*]OStim menu hub validity.
+[*]Return and Previous/Next navigation.
+[*]Duplicate generated menu destinations.
+[*]Furniture and creature metadata.
+[*]Stale converter metadata.
+[/list]
+
+For SexLab and P+ ZIPs, verification checks include:
+
+[list]
+[*]SLAL JSON/source files.
+[*]SLSB source.
+[*]Compiled .slr registry files.
+[*]HKX files.
+[*]FNIS animation lists.
+[*]Source-provided behavior graph hooks.
+[*]Missing stage events.
+[*]FNIS lines pointing at missing HKX files.
+[*]P+ registry validity where applicable.
+[/list]
+
+[b]Reports and support tools[/b]
+
+The converter writes public-safe reports by default. Normal reports avoid full local paths where possible and use filenames, archive-relative paths, or redacted placeholders.
+
+[list]
+[*][b]Copy Bug Report[/b] - copies a filled Nexus/LoversLab report template.
+[*][b]Copy Diagnosis Summary[/b] - copies a source diagnosis summary.
+[*][b]Copy Install Steps[/b] - copies the exact install steps for the last generated package.
+[*][b]Copy Log[/b] - copies visible log text.
+[*][b]Create Report Bundle[/b] - creates [i]AAC_BugReport_<PackName>.zip[/i] without HKX assets or source-pack contents.
+[*][b]Export Archive Structure[/b] - exports archive-relative file paths and file counts only.
+[*][b]Open Last Report[/b], [b]Open Human Report[/b], [b]Open JSON Report[/b], and [b]Open Output Folder[/b] open the latest generated support files.
+[*][b]Debug Mode[/b] adds deeper internal details and may include full paths. Leave it off for public Nexus/LoversLab posts unless requested.
+[/list]
+
+Every generated package also includes:
+
+[code]AAC_README.txt
+AAC_MANIFEST.json[/code]
+
+These files record what was generated, source archive information, converter version, verification result, install steps, and recommended next actions.
+
+[b]OStim Tools / scene JSON workflow[/b]
+
+Use this workflow if you want editable JSON files instead of an installable package.
+
+[list]
+[*][b]Generate OStim Tools JSON[/b] creates an AAC OStim Tools project scaffold.
+[*][b]Generate Scene JSON Folder[/b] writes only editable scene JSON plus reports.
+[*][b]Validate OStim Tools Project[/b] checks the project for missing scene files, duplicate IDs, invalid scene JSON, and unsupported schema fields.
+[*][b]Import OStim Tools Project[/b] loads an AAC/OStim Tools project back into the converter so it can be verified or packaged later.
+[/list]
+
+OStim Tools project exports may include:
+
+[code]ostim_tools_project.json
+scenes/
+actions/
+alignment/
+animations/
+configs/bridge/ostimConfigs/
+reports/
+AAC_README.txt
+AAC_MANIFEST.json[/code]
+
+The project manifest is an AAC scaffold and is not claimed to be an official OStim Tools project schema. Scene JSON is kept closer to OStim Tools' scene format by stripping AAC-only metadata where possible.
+
+[b]Requirements[/b]
+
+[list]
+[*]Windows.
+[*]OStim Standalone and its normal requirements for OStim output.
+[*]SexLab / SLAL requirements for SexLab output.
+[*]SexLab P+ / SLSB requirements for P+ output.
+[*]Pandora for normal OStim Standalone output. Nemesis is only recommended when the report or selected output path specifically says so.
+[*]A supported source animation archive.
+[/list]
+
+[b]Nexus Source edition:[/b] Install 64-bit Python 3.11, open Windows Terminal in the extracted converter folder, and run [i]py -3.11 -m pip install --user -r requirements-runtime.txt[/i] once. Then double-click [i]Adult Animation Converter.pyw[/i]. This edition contains no bundled executable or runtime.
+
+[b]Standalone Windows edition:[/b] The app folder is self-contained and does not require Python. Keep the [i]_internal[/i] folder beside [i]Adult Animation Converter.exe[/i]. Nexus may hold this edition for moderator review because it contains an executable.
+
+Do not install either converter edition through a mod manager or place it in Skyrim's Data folder.
+
+For .7z or .rar archives, install 7-Zip normally. The converter looks for 7z.exe, 7za.exe, or 7zz.exe on PATH, common Program Files folders, Windows registry entries, Chocolatey, Scoop, beside the app, and beside the selected archive. Advanced users can also set [i]AAC_7ZIP[/i] or select a 7-Zip executable in Advanced Options.
+
+[b]Compatibility notes[/b]
+
+[b]OSex, OSex+, OpenSex, and OSA[/b]
+
+Supported when the archive still includes OSA-style XML scene files and matching HKX animations. Missing speeds, dead scene links, and missing external OSex scene references are repaired or reported where possible.
+
+[b]SexLab and SLAL[/b]
+
+Supported when SLAnims JSON and matching HKX files are present. Large SLAL packs may include furniture, creature, variant, or sparse-tag scenes; the converter reports what was written, skipped, linked, or left out.
+
+[b]FlowerGirls[/b]
+
+Only animation content is converted. Quests, dialogue, spells, scripts, and framework features are not converted. If a FlowerGirls archive only contains .esp, .pex, .psc, or .seq files, install it normally with FlowerGirls instead.
+
+[b]OStim Standalone[/b]
+
+Supported when the archive contains SKSE/Plugins/OStim/scenes JSON plus HKX animations, with or without a top-level Data wrapper. Existing actions and furniture type files are copied/updated where appropriate.
+
+[b]Furniture scenes[/b]
+
+Furniture scenes are counted separately in reports. Built-in furniture scenes should be started from matching furniture in OStim. Spawned-prop or custom object scenes are kept selectable unless they safely map to a real OStim furniture type.
+
+[b]Do not reuse old converted ZIPs[/b]
+
+If a pack failed with an older converter version, reconvert the original source archive with the latest version. Do not keep testing an old generated ZIP.
+
+Also remove or disable older converted versions of the same pack before testing a new one. Old converted outputs or old Pandora/Nemesis generated output can cause duplicate entries or idle actors even when the new ZIP is clean.
+
+[b]Troubleshooting[/b]
+
+[b]The bottom of the app is cut off[/b]
+
+Use the latest version. The main window is scrollable/resizable so lower controls remain reachable on smaller screens or high-DPI Windows scaling.
+
+[b]Windows Defender says the app is a virus[/b]
+
+Use the current folder-style release ZIP instead of an older single-file EXE. Extract the whole Adult Animation Converter folder and run the EXE from inside that folder. Do not copy the EXE away from its [i]_internal[/i] folder. Current builds use a fresh pinned environment, disable UPX, embed version metadata, reject unrelated runtime packages, and include BUILD_PROVENANCE.txt.
+
+The download includes README_SECURITY.md and SHA256SUMS.txt. Compare the published SHA256 hash with your downloaded file. [i]Windows protected your PC[/i] is a SmartScreen reputation warning, not a named Defender Antivirus detection. If Defender gives a named detection, do not disable protection or add a broad exclusion. Keep the file quarantined, record the exact detection name and hash, and submit an incorrectly detected clean release here:
+
+[url]https://www.microsoft.com/en-us/wdsi/filesubmission[/url]
+
+[b]Nemesis shows a converted-pack checkbox with (null)[/b]
+
+Do not tick it. Reconvert the original archive with the latest converter. Current OStim Standalone output uses Pandora-compatible Nemesis/ATT registration and does not require that checkbox.
+
+[b]Nemesis reports ERROR(2006) with File: animationdata[/b]
+
+Remove the older converted ZIP from your mod manager, rebuild the original archive with this version or newer, install the fresh ZIP, and rerun the behavior tool recommended by the report. Older builds wrote Pandora-style metadata under Nemesis_Engine, which Nemesis can mistake for a missing behavior XML patch.
+
+[b]Pandora shows duplicate entries[/b]
+
+First verify the generated ZIP. If Verify passes and reports no duplicate behavior registrations, remove older converted versions of the same pack, remove old Pandora generated output if applicable, install the fresh generated ZIP, rerun Pandora, and enable/deploy only the newest Pandora output.
+
+If Verify reports duplicate or conflicting registrations, do not install the ZIP. Attach the human-readable report when posting a bug.
+
+[b]Pandora shows the converted pack but actors stay idle[/b]
+
+Reconvert the original archive with the latest converter, install the new [i]_OStimSA.zip[/i], rerun Pandora, and make sure Pandora's generated output mod is enabled/deployed in your mod manager.
+
+Visibility in Pandora does not always mean the motion events from an old converted ZIP were registered.
+
+Import Pandora's Engine.log after the run. Version 5.7 and newer recognize Pandora 4.4 OutputAnimData/OutputAnimSetData merge messages and check for generated behavior files beside that log. A saved output-path warning is applied only when those settings match the imported log folder.
+
+[b]The converted OStim menu appears but is empty[/b]
+
+Open the report and check the menu hub / category visibility section. If valid scenes were written but not linked, attach the report bundle. If Human-only OStim output skipped all creature scenes, the report will say that no human scenes were retained.
+
+[b]Creature pack does not appear in the OCreatures creature menu[/b]
+
+Open the report and check the OCreatures Output and OCreatures Menu Integration sections. Creature-focused OStim output should say that the OCreatures menu entry was generated and that retained creature scenes are reachable from the OCreatures menu path. If those pass, check runtime setup next: OCreatures or another OStim creature extension, Creature Framework, matching creature assets, installed converted ZIP, and enabled/deployed Pandora output.
+
+[b]Converted scenes do not appear in game[/b]
+
+[list]
+[*]Make sure you installed the generated ZIP, not the original source archive.
+[*]Run the behavior tool recommended by the report.
+[*]Make sure the generated behavior output is enabled/deployed.
+[*]For OStim output, check OStim's scene UI and the generated menu hub.
+[*]For SexLab output, register or enable the pack in SexLab Animation Loader.
+[*]For human-only OStim output, read the skipped creature counts in the report.
+[*]For included creature scenes, confirm the correct creature runtime, assets, and behavior generation are installed.
+[/list]
+
+[b]Bug reports[/b]
+
+The easiest option is [b]Create Report Bundle[/b]. Attach the generated [i]AAC_BugReport_<PackName>.zip[/i] to your Nexus or LoversLab post when possible.
+
+If posting manually, include:
+
+[list]
+[*]Source pack name and version.
+[*]Source framework if known: OSex, OSex+, OpenSex, SLAL, FlowerGirls, OStim, etc.
+[*]Converter version.
+[*]Output type: OStim Standalone, SexLab/SLAL, SexLab P+, OStim Tools JSON, or Scene JSON Folder.
+[*]Behavior tool used: Pandora or Nemesis.
+[*]Mod manager used: MO2, Vortex, or manual.
+[*]Whether Verify Converted ZIP passed.
+[*]What happens in game.
+[*]The generated human-readable report.
+[*]The JSON report if the issue is technical or repeatable.
+[/list]
+
+[b]Credits and permissions[/b]
+
+This tool converts and packages existing animation archives. Credit for original animation content belongs to the original mod authors.
+
+Do not upload converted packs publicly unless the original animation pack permissions allow it. Personal conversion is different from public redistribution.

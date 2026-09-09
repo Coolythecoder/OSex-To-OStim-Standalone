@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<os:module xmlns:os="urn:opensex:test" version="1">
+  <os:scene id="DemoScene" name="Demo Scene" actors="2">
+    <os:info name="Demo Scene" animator="Fixture Author" />
+    <os:metadata tags="romantic,example" furniture="bed" noRandomSelection="true" />
+    <os:actors>
+      <os:actor index="0" intendedSex="male" x="0" y="1.5" z="0" r="5" tags="standing" mystery="kept" />
+      <os:actor index="1" intendedSex="female" x="0" y="0" z="0" r="0" tags="kneeling" />
+    </os:actors>
+    <os:stage id="Slow" duration="3.5">
+      <os:animation actorIndex="0" event="DemoSlow_0" file="DemoSlow_0.hkx" />
+      <os:animation actorIndex="1" event="DemoSlow_1" file="DemoSlow_1.hkx" />
+    </os:stage>
+    <os:stage id="Fast" duration="2.0">
+      <os:animation actorIndex="0" event="DemoFast_0" file="DemoFast_0.hkx" />
+      <os:animation actorIndex="1" event="DemoFast_1" file="DemoFast_1.hkx" />
+    </os:stage>
+    <os:actions>
+      <os:action type="kissing" actor="0" target="1" />
+    </os:actions>
+    <os:mystery value="preserved" />
+  </os:scene>
+</os:module>
